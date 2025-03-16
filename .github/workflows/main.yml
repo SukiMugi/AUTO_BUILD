@@ -43,14 +43,14 @@ jobs:
       - name: 2.克隆源码与补丁
         run: |
           cd $GITHUB_WORKSPACE/kernel_workspace
-          git clone https://github.com/jhchong94/kernel_xiaomi_sm8250_n0kernel --depth=1 android_kernel
+          git clone https://github.com/yspbwx2010/kernel_xiaomi_sm8250_mod --depth=1 android_kernel
           git clone https://github.com/zzh20188/AUTO_BUILD.git src
           git clone https://gitlab.com/simonpunk/susfs4ksu.git -b kernel-4.19 --depth=1 susfs
 
       - name: 3.安装KSUN
         run: |
           cd $GITHUB_WORKSPACE/kernel_workspace/android_kernel
-          curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/next-susfs/kernel/setup.sh" | bash -s next-susfs
+          curl -LSs "https://raw.githubusercontent.com/ShirkNeko/KernelSU/refs/heads/susfs-dev/kernel/setup.sh" | bash -s susfs-dev
 
       - name: 4.集成KSU
         run: |
