@@ -46,6 +46,8 @@ jobs:
           git clone https://github.com/SukiMugi/kernel_xiaomi_sm8250_mod --depth=1 android_kernel
           git clone https://github.com/zzh20188/AUTO_BUILD.git src
           git clone https://gitlab.com/simonpunk/susfs4ksu.git -b kernel-4.19 --depth=1 susfs
+          cd android_kernel
+          curl -LSs "https://raw.githubusercontent.com/ShirkNeko/KernelSU/refs/heads/susfs-dev/kernel/setup.sh" | bash -s susfs-dev
         
       - name: 6.开始构建
         run: |
