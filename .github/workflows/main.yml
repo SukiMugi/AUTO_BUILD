@@ -97,23 +97,23 @@ jobs:
           case "${{ inputs.phone }}" in
               "小米10")
                   echo "选择小米10配置"
-                  DEFCONFIG=vendor/umi_defconfig
+                  DEFCONFIG=umi_defconfig
                   ;;
               "小米10pro")
                   echo "选择小米10pro配置"
-                  DEFCONFIG=vendor/cmi_defconfig
+                  DEFCONFIG=cmi_defconfig
                   ;;
               "红米k30pro")
                   echo "选择红米k30pro配置"
-                  DEFCONFIG=vendor/lmi_defconfig
+                  DEFCONFIG=lmi_defconfig
                   ;;
               "红米k30sUltra")
                   echo "选择红米k30sUltra配置"
-                  DEFCONFIG=vendor/apollo_defconfig
+                  DEFCONFIG=apollo_defconfig
                   ;;
               "小米10Ultra")
                   echo "选择小米10Ultra配置"
-                  DEFCONFIG=vendor/cas_defconfig
+                  DEFCONFIG=cas_defconfig
                   ;;
               *)
                   echo "非法内容"
