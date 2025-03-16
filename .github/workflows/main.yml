@@ -43,7 +43,7 @@ jobs:
       - name: 2.克隆源码与补丁
         run: |
           cd $GITHUB_WORKSPACE/kernel_workspace
-          git clone https://github.com/yspbwx2010/kernel_xiaomi_sm8250_mod --depth=1 android_kernel
+          git clone https://github.com/SukiMugi/kernel_xiaomi_sm8250_mod --depth=1 android_kernel
           git clone https://github.com/zzh20188/AUTO_BUILD.git src
           git clone https://gitlab.com/simonpunk/susfs4ksu.git -b kernel-4.19 --depth=1 susfs
 
@@ -58,7 +58,6 @@ jobs:
           echo "进入源码目录"
           cd $GITHUB_WORKSPACE/kernel_workspace/android_kernel
           cp $GITHUB_WORKSPACE/kernel_workspace/src/patches/* .
-          patch -p1 < new_defconfig.patch
           patch -p1 < non-kprobes.patch
           # tail -n 10 arch/arm64/configs/vendor/umi_defconfig
 
