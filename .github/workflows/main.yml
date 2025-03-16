@@ -46,38 +46,6 @@ jobs:
           git clone https://github.com/SukiMugi/kernel_xiaomi_sm8250_mod --depth=1 android_kernel
           git clone https://github.com/zzh20188/AUTO_BUILD.git src
           git clone https://gitlab.com/simonpunk/susfs4ksu.git -b kernel-4.19 --depth=1 susfs
-
-      - name: 3.安装KSUN
-        run: |
-          cd $GITHUB_WORKSPACE/kernel_workspace/android_kernel
-          curl -LSs "https://raw.githubusercontent.com/ShirkNeko/KernelSU/refs/heads/susfs-dev/kernel/setup.sh" | bash -s susfs-dev
-
-      - name: 4.集成KSU
-        run: |
-          ls
-          echo "进入源码目录"
-          cd $GITHUB_WORKSPACE/kernel_workspace/android_kernel
-          cp $GITHUB_WORKSPACE/kernel_workspace/src/patches/* .
-          # tail -n 10 arch/arm64/configs/vendor/umi_defconfig
-
-      - name: 5.应用susfs补丁
-        run: |
-          if [ ${{ inputs.susfs }} = true ]; then
-            echo "选择集成susfs"
-            cd $GITHUB_WORKSPACE/kernel_workspace/android_kernel
-            echo "复制susfs/kernel_patches/fs/* 的内容"
-            cp $GITHUB_WORKSPACE/kernel_workspace/susfs/kernel_patches/fs/* ./fs/
-            echo "复制susfs/kernel_patches/include/linux/* 的内容"
-            cp $GITHUB_WORKSPACE/kernel_workspace/susfs/kernel_patches/include/linux/* ./include/linux/
-            echo "复制susfs内核源码补丁"
-            cp $GITHUB_WORKSPACE/kernel_workspace/susfs/kernel_patches/50_add_susfs_in_kernel-4.19.patch .
-            echo "执行susfs补丁"
-            patch -p1 < 50_add_susfs_in_kernel-4.19.patch || true
-            echo "修复"
-            patch -p1 < after_patch_fix.patch            
-          else
-            echo "跳过集成susfs"
-          fi
         
       - name: 6.开始构建
         run: |
